@@ -1,5 +1,5 @@
-'use strict';
 
+'use strict';
 // Selecting elements
 const player0El = document.querySelector('.player--0');
 const player1El = document.querySelector('.player--1');
@@ -12,6 +12,7 @@ const diceEl = document.querySelector('.dice');
 const btnNew = document.querySelector('.btn--new');
 const btnRoll = document.querySelector('.btn--roll');
 const btnHold = document.querySelector('.btn--hold');
+// const overlay = document.querySelector('.overlay');
 
 let scores, currentScore, activePlayer, playing;
 
@@ -57,9 +58,8 @@ btnRoll.addEventListener('click', function () {
     if (dice !== 1) {
       // Add dice to current score
       currentScore += dice;
-      document.getElementById(
-        `current--${activePlayer}`
-      ).textContent = currentScore;
+      document.getElementById(`current--${activePlayer}`).textContent =
+        currentScore;
     } else {
       // Switch to next player
       switchPlayer();
@@ -96,3 +96,25 @@ btnHold.addEventListener('click', function () {
 });
 
 btnNew.addEventListener('click', init);
+
+const gameRulesButton = document.getElementById('game-rules-button');
+const gameRulesBox = document.getElementById('game-rules-box');
+
+gameRulesButton.addEventListener('click', () => {
+  gameRulesBox.style.display = 'block';
+});
+
+// Optional: Close the rules box when clicking outside the box
+document.addEventListener('click', event => {
+  if (event.target !== gameRulesButton && event.target !== gameRulesBox) {
+    gameRulesBox.style.display = 'none';
+  }
+});
+
+// Prevent the click event on the rules box from propagating to the document
+gameRulesBox.addEventListener('click', event => {
+  event.stopPropagation();
+});
+
+
+
