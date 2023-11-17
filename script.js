@@ -104,14 +104,14 @@ gameRulesButton.addEventListener('click', () => {
   gameRulesBox.style.display = 'block';
 });
 
-// Optional: Close the rules box when clicking outside the box
+//  Close the rules box when clicking outside the box
 document.addEventListener('click', event => {
   if (event.target !== gameRulesButton && event.target !== gameRulesBox) {
     gameRulesBox.style.display = 'none';
   }
 });
 
-// Prevent the click event on the rules box from propagating to the document
+// Prevent the click event on the rules box 
 gameRulesBox.addEventListener('click', event => {
   event.stopPropagation();
 });
